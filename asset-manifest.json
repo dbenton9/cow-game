@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cow-game/static/css/main.22941023.css",
+    "main.js": "/cow-game/static/js/main.069fc263.js",
+    "index.html": "/cow-game/index.html",
+    "main.22941023.css.map": "/cow-game/static/css/main.22941023.css.map",
+    "main.069fc263.js.map": "/cow-game/static/js/main.069fc263.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22941023.css",
+    "static/js/main.069fc263.js"
+  ]
+}
