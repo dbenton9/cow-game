@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cow-game/precache-manifest.e69b976c6cd6c009123a23883b8efd54.js"
+  "/cow-game/precache-manifest.4cf92ecea2d40b027527f66bf5befc89.js"
 );
 
 workbox.clientsClaim();
