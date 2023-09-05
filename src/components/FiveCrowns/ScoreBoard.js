@@ -13,6 +13,9 @@ export const ScoreBoard = () => {
     }
 
     const handleRemovePlayer = (index) => {
+        const playNameToRemove = players[index];
+        const shouldRemove = window.confirm(`Are you sure you want to remove ${playNameToRemove}?`);
+        if (!shouldRemove) return;
         const updatedPlayers = [...players];
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
