@@ -16,13 +16,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="./NotFoundPage">Not Found</Link>
+              <Link to="/NotFoundPage">Not Found</Link>
             </li>
             <li>
-                <Link to="./CowPage">Cow Page</Link>
+                <Link to="/CowPage">Cow Page</Link>
             </li>
             <li>
-                <Link to="./FiveCrowns">Five Crowns</Link>
+                <Link to="/FiveCrowns">Five Crowns</Link>
             </li>
           </ul>
         </nav>
