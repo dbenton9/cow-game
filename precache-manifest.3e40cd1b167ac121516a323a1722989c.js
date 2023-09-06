@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/cow-game/static/js/runtime~main.39812776.js"
   },
   {
-    "revision": "3d6fa1e412ae97063b5466e0cd4de366",
+    "revision": "5d547a04c74f06ede85c9dbfa6e02991",
     "url": "/cow-game/index.html"
   }
 ];
