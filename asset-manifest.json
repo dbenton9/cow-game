@@ -1,13 +1,13 @@
 {
-  "main.css": "https://dbenton9.github.io/cow-game/static/css/main.4f28020f.chunk.css",
-  "main.js": "https://dbenton9.github.io/cow-game/static/js/main.a5f6715d.chunk.js",
-  "main.js.map": "https://dbenton9.github.io/cow-game/static/js/main.a5f6715d.chunk.js.map",
-  "static/js/1.31bed854.chunk.js": "https://dbenton9.github.io/cow-game/static/js/1.31bed854.chunk.js",
-  "static/js/1.31bed854.chunk.js.map": "https://dbenton9.github.io/cow-game/static/js/1.31bed854.chunk.js.map",
-  "runtime~main.js": "https://dbenton9.github.io/cow-game/static/js/runtime~main.3d88b252.js",
-  "runtime~main.js.map": "https://dbenton9.github.io/cow-game/static/js/runtime~main.3d88b252.js.map",
-  "static/css/main.4f28020f.chunk.css.map": "https://dbenton9.github.io/cow-game/static/css/main.4f28020f.chunk.css.map",
-  "index.html": "https://dbenton9.github.io/cow-game/index.html",
-  "precache-manifest.2f4afe8ac88caa0190e0db318c0d58a4.js": "https://dbenton9.github.io/cow-game/precache-manifest.2f4afe8ac88caa0190e0db318c0d58a4.js",
-  "service-worker.js": "https://dbenton9.github.io/cow-game/service-worker.js"
+  "main.css": "/cow-game/static/css/main.4f28020f.chunk.css",
+  "main.js": "/cow-game/static/js/main.a5f6715d.chunk.js",
+  "main.js.map": "/cow-game/static/js/main.a5f6715d.chunk.js.map",
+  "static/js/1.31bed854.chunk.js": "/cow-game/static/js/1.31bed854.chunk.js",
+  "static/js/1.31bed854.chunk.js.map": "/cow-game/static/js/1.31bed854.chunk.js.map",
+  "runtime~main.js": "/cow-game/static/js/runtime~main.39812776.js",
+  "runtime~main.js.map": "/cow-game/static/js/runtime~main.39812776.js.map",
+  "static/css/main.4f28020f.chunk.css.map": "/cow-game/static/css/main.4f28020f.chunk.css.map",
+  "index.html": "/cow-game/index.html",
+  "precache-manifest.3cb701efa046bf58f285ba97d075139b.js": "/cow-game/precache-manifest.3cb701efa046bf58f285ba97d075139b.js",
+  "service-worker.js": "/cow-game/service-worker.js"
 }

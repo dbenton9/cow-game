@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://dbenton9.github.io/cow-game/precache-manifest.2f4afe8ac88caa0190e0db318c0d58a4.js"
+  "/cow-game/precache-manifest.3cb701efa046bf58f285ba97d075139b.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("https://dbenton9.github.io/cow-game/index.html", {
+workbox.routing.registerNavigationRoute("/cow-game/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
