@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "9f41689eab20a3ae408a",
+    "revision": "8628f77a1467420ab999",
     "url": "/cow-game/static/css/main.4f28020f.chunk.css"
   },
   {
-    "revision": "9f41689eab20a3ae408a",
-    "url": "/cow-game/static/js/main.9f41689e.chunk.js"
+    "revision": "8628f77a1467420ab999",
+    "url": "/cow-game/static/js/main.8628f77a.chunk.js"
   },
   {
     "revision": "31bed8541b011ec7d9ec",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/cow-game/static/js/runtime~main.39812776.js"
   },
   {
-    "revision": "b27f9a3ccf931ef8bd03c7eb7615f16c",
+    "revision": "3d6fa1e412ae97063b5466e0cd4de366",
     "url": "/cow-game/index.html"
   }
 ];
