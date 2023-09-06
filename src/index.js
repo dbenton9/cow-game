@@ -9,7 +9,7 @@ import FiveCrowns from './components/FiveCrowns/FiveCrowns';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <Router>
+    <Router basename="/cow-game">
         <nav>
           <ul>
             <li>
