@@ -1,10 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ScoreBoard from "./ScoreBoard";
 export const FiveCrowns = () => {
+    const [numberOfRounds, setNumberOfRounds] = useState(1);
+
+    const handleNumberOfRoundsChange = (e) => {
+        setNumberOfRounds(parseInt(e.target.value));
+    }
+
+    // create a loop to create 13 option tags
+    const options = () => {
+        let options = [];
+        for (let i = 1; i <= 13; i++) {
+            options.push(<option key={i} value={i}>{i}</option>)
+        }
+        return options;
+    }
+
     return (
         <div>
             <h1>Five Crowns</h1>
-            <ScoreBoard />
+            <div>
+                <h3>Settings</h3>
+                <div>
+                    <label htmlFor="rounds">Number of Rounds</label>
+                    <select onChange={(e)=>handleNumberOfRoundsChange(e)}>
+                        {options()}
+                    </select>
+                </div>
+            </div>
+            <ScoreBoard numberOfRounds={numberOfRounds}/>
         </div>
     );
 }

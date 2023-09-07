@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import ScoreRow from "./ScoreRow";
 
-export const ScoreBoard = () => {
+export const ScoreBoard = ({numberOfRounds}) => {
     const [players, setPlayers] =useState( ['Player 1', 'Player 2'])
     const [newPlayerName, setNewPlayerName] = useState('');
 
     const handleAddPlayer = () => {
+        console.log(players)
         if (newPlayerName.trim() !== '') {
             setPlayers([...players, newPlayerName]);
             setNewPlayerName('');
@@ -20,6 +21,14 @@ export const ScoreBoard = () => {
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
     }
+
+    const roundHeaders = () => {
+        let headers = [];
+        for (let i = 1; i <= numberOfRounds; i++) {
+            headers.push(<td key={i}>Round {i}</td>)
+        }
+        return headers;
+    }
     return (
         <div>
             <h3>Score Board</h3>
@@ -27,10 +36,8 @@ export const ScoreBoard = () => {
                 <thead>
                 <tr>
                     <td>Name</td>
-                    <td>Round 1</td>
-                    <td>Round 2</td>
-                    <td>Round 3</td>
                     <td>Score</td>
+                    {roundHeaders()}
                 </tr>
                 </thead>
                 <tbody>
@@ -38,6 +45,7 @@ export const ScoreBoard = () => {
                         <ScoreRow
                             key={index}
                             basePlayers={playerName}
+                            numberOfRounds={numberOfRounds}
                             onRemove={()=>handleRemovePlayer(index)}
                         />
                     ))}

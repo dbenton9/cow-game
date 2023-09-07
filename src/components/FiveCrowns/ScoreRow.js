@@ -1,51 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
-export const ScoreRow = ({basePlayers, onRemove}) => {
+export const ScoreRow = ({basePlayers, numberOfRounds, onRemove}) => {
     const [playerName, setPlayerName] = useState(basePlayers);
-    const [round1, setRound1Score] = useState(0);
-    const [round2, setRound2Score] = useState(0);
-    const [round3, setRound3Score] = useState(0);
+    const [rounds, setRoundScore] = useState(() =>
+        Array.from({ length: numberOfRounds }, () => 0)
+    );
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const newTotal = round1 + round2 + round3;
+        setRoundScore((prevRounds) => {
+            const newRounds = [...prevRounds];
+            if (newRounds.length < numberOfRounds) {
+                // Add additional rounds if numberOfRounds increased
+                for (let i = newRounds.length; i < numberOfRounds; i++) {
+                    newRounds.push(0);
+                }
+            } else if (newRounds.length > numberOfRounds) {
+                // Remove excess rounds if numberOfRounds decreased
+                newRounds.splice(numberOfRounds);
+            }
+            return newRounds;
+        });
+    }, [numberOfRounds]);
+
+    useEffect(() => {
+        const newTotal = rounds.reduce((total, round) => total + round, 0);
         setTotal(newTotal)
-    }, [round1, round2, round3]);
+    }, [rounds]);
 
     const handlePlayerNameChange = (e) => {
         setPlayerName(e.target.value);
     }
     const handleRoundChange = (roundNumber, e) => {
         const newScore = parseInt(e.target.value);
-        switch(roundNumber) {
-            case 1:
-                setRound1Score(newScore);
-                break;
-            case 2:
-                setRound2Score(newScore);
-                break;
-            case 3:
-                setRound3Score(newScore);
-                break;
-            default:
-                break;
-        }
+        const updatedRounds = [...rounds];
+        updatedRounds[roundNumber - 1] = newScore;
+        setRoundScore(updatedRounds);
+
     }
+    const numberOfRoundInputs = () => {
+        let inputs = [];
+        for (let i = 1; i <= numberOfRounds; i++) {
+            inputs.push(
+                <td key={i}>
+                    <input
+                        type="number"
+                        value={rounds[i - 1]} // Subtract 1 because the array is 0-based
+                        onChange={(e) => handleRoundChange(i, e)}
+                    />
+                </td>
+            );
+        }
+        return inputs;
+    };
 
 
     return (
         <tr align="center">
             <td><input type="text" value={playerName} onChange={handlePlayerNameChange}/></td>
-            <td>
-                <input type="number" value={round1} onChange={(e) => handleRoundChange(1, e)} />
-            </td>
-            <td>
-                <input type="number" value={round2} onChange={(e) => handleRoundChange(2, e)} />
-            </td>
-            <td>
-                <input type="number" value={round3} onChange={(e) => handleRoundChange(3, e)} />
-            </td>
             <td>{total}</td>
+            {numberOfRoundInputs()}
             <td>
                 <button onClick={onRemove}>Remove</button>
             </td>
