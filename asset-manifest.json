@@ -1,13 +1,13 @@
 {
   "main.css": "/cow-game/static/css/main.4f28020f.chunk.css",
-  "main.js": "/cow-game/static/js/main.88a27385.chunk.js",
-  "main.js.map": "/cow-game/static/js/main.88a27385.chunk.js.map",
+  "main.js": "/cow-game/static/js/main.968965df.chunk.js",
+  "main.js.map": "/cow-game/static/js/main.968965df.chunk.js.map",
   "static/js/1.01cd319a.chunk.js": "/cow-game/static/js/1.01cd319a.chunk.js",
   "static/js/1.01cd319a.chunk.js.map": "/cow-game/static/js/1.01cd319a.chunk.js.map",
   "runtime~main.js": "/cow-game/static/js/runtime~main.39812776.js",
   "runtime~main.js.map": "/cow-game/static/js/runtime~main.39812776.js.map",
   "static/css/main.4f28020f.chunk.css.map": "/cow-game/static/css/main.4f28020f.chunk.css.map",
   "index.html": "/cow-game/index.html",
-  "precache-manifest.ae277667a4f55d18b3d05f84b4e5bbdd.js": "/cow-game/precache-manifest.ae277667a4f55d18b3d05f84b4e5bbdd.js",
+  "precache-manifest.c0f264700c318cee9ebf54bf5cb46a90.js": "/cow-game/precache-manifest.c0f264700c318cee9ebf54bf5cb46a90.js",
   "service-worker.js": "/cow-game/service-worker.js"
 }
