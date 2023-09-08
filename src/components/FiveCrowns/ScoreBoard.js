@@ -29,6 +29,7 @@ export const ScoreBoard = ({numberOfRounds}) => {
         }
         return headers;
     }
+
     return (
         <div>
             <h3>Score Board</h3>

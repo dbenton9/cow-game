@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import ScoreBoard from "./ScoreBoard";
 export const FiveCrowns = () => {
-    const [numberOfRounds, setNumberOfRounds] = useState(1);
+    const [numberOfRounds, setNumberOfRounds] = useState(localStorage.getItem('numberOfRounds') || 1);
 
     const handleNumberOfRoundsChange = (e) => {
         setNumberOfRounds(parseInt(e.target.value));
     }
+
+    useEffect(() => {
+        localStorage.setItem('numberOfRounds', numberOfRounds);
+    }, [numberOfRounds]);
 
     // create a loop to create 13 option tags
     const options = () => {
