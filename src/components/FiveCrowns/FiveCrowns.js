@@ -27,7 +27,7 @@ export const FiveCrowns = () => {
                 <h3>Settings</h3>
                 <div>
                     <label htmlFor="rounds">Number of Rounds</label>
-                    <select onChange={(e)=>handleNumberOfRoundsChange(e)}>
+                    <select onChange={(e)=>handleNumberOfRoundsChange(e)} value={numberOfRounds}>
                         {options()}
                     </select>
                 </div>

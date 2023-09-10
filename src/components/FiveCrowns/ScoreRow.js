@@ -1,29 +1,13 @@
 import React, {useState, useEffect} from 'react';
 
-export const ScoreRow = ({basePlayers, numberOfRounds, onRemove}) => {
-    const [playerName, setPlayerName] = useState(basePlayers);
-    const [rounds, setRoundScore] = useState(() =>
-        Array.from({ length: numberOfRounds }, () => 0)
-    );
+export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
+    const [playerName, setPlayerName] = useState(playerData.name);
+    const [rounds, setRoundScore] = useState(playerData.rounds);
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        setRoundScore((prevRounds) => {
-            const newRounds = [...prevRounds];
-            if (newRounds.length < numberOfRounds) {
-                // Add additional rounds if numberOfRounds increased
-                for (let i = newRounds.length; i < numberOfRounds; i++) {
-                    newRounds.push(0);
-                }
-            } else if (newRounds.length > numberOfRounds) {
-                // Remove excess rounds if numberOfRounds decreased
-                newRounds.splice(numberOfRounds);
-            }
-            return newRounds;
-        });
-    }, [numberOfRounds]);
-
-    useEffect(() => {
+        // calculating total off of previous rounds
+        console.log("calc rounds: " + rounds)
         const newTotal = rounds.reduce((total, round) => total + round, 0);
         setTotal(newTotal)
     }, [rounds]);
@@ -36,11 +20,11 @@ export const ScoreRow = ({basePlayers, numberOfRounds, onRemove}) => {
         const updatedRounds = [...rounds];
         updatedRounds[roundNumber - 1] = newScore;
         setRoundScore(updatedRounds);
-
+        updatePlayersData(updatedRounds);
     }
     const numberOfRoundInputs = () => {
         let inputs = [];
-        for (let i = 1; i <= numberOfRounds; i++) {
+        for (let i = 1; i <= playerData.rounds.length; i++) {
             inputs.push(
                 <td key={i}>
                     <input

@@ -1,34 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ScoreRow from "./ScoreRow";
 
 export const ScoreBoard = ({numberOfRounds}) => {
-    const [players, setPlayers] =useState( ['Player 1', 'Player 2'])
+    const [playersData, setPlayers] =useState( JSON.parse(localStorage.getItem('playersData')) ||
+        [{name: 'shelby', rounds: [0]}]);
     const [newPlayerName, setNewPlayerName] = useState('');
 
+    useEffect(() => {
+        localStorage.setItem('playersData', JSON.stringify(playersData));
+    }, [playersData]);
+
+    useEffect(() => {
+        setPlayers((prevPlayerStats) => {
+            const newPlayersStats = [...prevPlayerStats];
+            prevPlayerStats.map((player, index) => {
+                if (player.rounds.length < numberOfRounds) {
+                    // Add additional rounds if numberOfRounds increased
+                    for (let i = player.rounds.length; i < numberOfRounds; i++) {
+                        newPlayersStats[index].rounds.push(0);
+                    }
+                } else if (player.rounds.length > numberOfRounds) {
+                    // Remove excess rounds if numberOfRounds decreased
+                    newPlayersStats[index].rounds.splice(numberOfRounds);
+                }
+            });
+            return newPlayersStats;
+        });
+    }, [numberOfRounds]);
+
     const handleAddPlayer = () => {
-        console.log(players)
         if (newPlayerName.trim() !== '') {
-            setPlayers([...players, newPlayerName]);
+            setPlayers([...playersData, {name: newPlayerName, rounds: Array.from({length: numberOfRounds}, () => 0)}]);
             setNewPlayerName('');
         }
     }
 
     const handleRemovePlayer = (index) => {
-        const playNameToRemove = players[index];
+        const playNameToRemove = playersData[index];
         const shouldRemove = window.confirm(`Are you sure you want to remove ${playNameToRemove}?`);
         if (!shouldRemove) return;
-        const updatedPlayers = [...players];
+        const updatedPlayers = [...playersData];
         updatedPlayers.splice(index, 1);
         setPlayers(updatedPlayers);
     }
 
     const roundHeaders = () => {
         let headers = [];
-        for (let i = 1; i <= numberOfRounds; i++) {
+        let roundsLength = 0;
+        if (playersData && playersData[0] && playersData[0].rounds) {
+            roundsLength = playersData[0].rounds.length;
+        }
+
+        for (let i = 1; i <= roundsLength; i++) {
             headers.push(<td key={i}>Round {i}</td>)
         }
         return headers;
     }
+
+    const updatePlayersData = (index, updatedRounds) => {
+        setPlayers((prevPlayerStats) => {
+            const newPlayersStats = [...prevPlayerStats];
+            newPlayersStats[index] = { ...newPlayersStats[index], rounds: updatedRounds };
+            return newPlayersStats;
+        });
+
+        let playersData = JSON.parse(localStorage.getItem('playersData'));
+        playersData[index] = { ...playersData[index], rounds: updatedRounds };
+        localStorage.setItem('playersData', JSON.stringify(playersData));
+    };
 
     return (
         <div>
@@ -42,12 +81,12 @@ export const ScoreBoard = ({numberOfRounds}) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {players.map((playerName, index) => (
+                    {playersData.map((playerName, index) => (
                         <ScoreRow
-                            key={index}
-                            basePlayers={playerName}
+                            playerData={playerName}
                             numberOfRounds={numberOfRounds}
                             onRemove={()=>handleRemovePlayer(index)}
+                            updatePlayersData={(updatedRounds) => updatePlayersData(index, updatedRounds)}
                         />
                     ))}
                     <tr>
