@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ScoreRow from "./ScoreRow";
+import Button from 'react-bootstrap/Button';
+import {Stack} from "react-bootstrap";
 
 export const ScoreBoard = ({numberOfRounds}) => {
     const [playersData, setPlayers] =useState( JSON.parse(localStorage.getItem('playersData')) ||
@@ -99,7 +101,7 @@ export const ScoreBoard = ({numberOfRounds}) => {
                                 />
                         </td>
                         <td colSpan="5">
-                            <button onClick={handleAddPlayer}>Add Player</button>
+                            <Button onClick={handleAddPlayer}>Add Player</Button>
                         </td>
                     </tr>
                 </tbody>

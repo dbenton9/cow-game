@@ -6,13 +6,14 @@ export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        // calculating total off of previous rounds
+        // BUG: calculating total off of old 'rounds' when numberOfRounds is changed
         console.log("calc rounds: " + rounds)
         const newTotal = rounds.reduce((total, round) => total + round, 0);
         setTotal(newTotal)
     }, [rounds]);
 
     const handlePlayerNameChange = (e) => {
+        // BUG: player name is not updated in localStorage
         setPlayerName(e.target.value);
     }
     const handleRoundChange = (roundNumber, e) => {
