@@ -1,6 +1,10 @@
 ### Deploying
 
-`npm run deploy` with [react-gh-pages](https://github.com/gitname/react-gh-pages)
+`npm run build` and `npm run deploy` with [react-gh-pages](https://github.com/gitname/react-gh-pages)
+
+### Bootstrap
+
+Utilizing [`react-bootstrap`](https://react-bootstrap.github.io/docs/getting-started/introduction)
 
 # Getting Started with Create React App
 
