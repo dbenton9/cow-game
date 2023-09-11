@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ScoreRow from "./ScoreRow";
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import Container from "react-bootstrap/Container";
 import {Stack} from "react-bootstrap";
 
 export const ScoreBoard = ({numberOfRounds}) => {
@@ -72,10 +74,10 @@ export const ScoreBoard = ({numberOfRounds}) => {
     };
 
     return (
-        <div>
+        <div >
             <h3>Score Board</h3>
-            <table>
-                <thead>
+            <Table striped border hover responsive size="sm">
+                <thead align="center">
                 <tr>
                     <td>Name</td>
                     <td>Score</td>
@@ -92,7 +94,7 @@ export const ScoreBoard = ({numberOfRounds}) => {
                         />
                     ))}
                     <tr>
-                        <td>
+                        <td align="center">
                             <input
                                 type="text"
                                 placeholder="New Player"
@@ -106,8 +108,8 @@ export const ScoreBoard = ({numberOfRounds}) => {
                     </tr>
                 </tbody>
 
-            </table>
-        </div>
+            </Table>
+        </div >
     );
 }
 

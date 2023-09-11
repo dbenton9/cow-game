@@ -27,7 +27,7 @@ export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
         let inputs = [];
         for (let i = 1; i <= playerData.rounds.length; i++) {
             inputs.push(
-                <td key={i}>
+                <td style={{width: `25px` }}>
                     <input
                         type="number"
                         value={rounds[i - 1]} // Subtract 1 because the array is 0-based

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ScoreBoard from "./ScoreBoard";
+import Container from "react-bootstrap/Container";
 export const FiveCrowns = () => {
     const [numberOfRounds, setNumberOfRounds] = useState(localStorage.getItem('numberOfRounds') || 1);
 
@@ -21,7 +22,7 @@ export const FiveCrowns = () => {
     }
 
     return (
-        <div>
+        <Container>
             <h1>Five Crowns</h1>
             <div>
                 <h3>Settings</h3>
@@ -33,7 +34,7 @@ export const FiveCrowns = () => {
                 </div>
             </div>
             <ScoreBoard numberOfRounds={numberOfRounds}/>
-        </div>
+        </Container>
     );
 }
 
