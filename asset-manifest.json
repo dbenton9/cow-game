@@ -1,13 +1,15 @@
 {
-  "main.css": "/cow-game/static/css/main.5953c2dd.chunk.css",
-  "main.js": "/cow-game/static/js/main.4ae6a349.chunk.js",
-  "main.js.map": "/cow-game/static/js/main.4ae6a349.chunk.js.map",
-  "static/js/1.235245bd.chunk.js": "/cow-game/static/js/1.235245bd.chunk.js",
-  "static/js/1.235245bd.chunk.js.map": "/cow-game/static/js/1.235245bd.chunk.js.map",
+  "main.css": "/cow-game/static/css/main.79fbcfd9.chunk.css",
+  "main.js": "/cow-game/static/js/main.8ea44992.chunk.js",
+  "main.js.map": "/cow-game/static/js/main.8ea44992.chunk.js.map",
+  "static/css/1.14832127.chunk.css": "/cow-game/static/css/1.14832127.chunk.css",
+  "static/js/1.29130e67.chunk.js": "/cow-game/static/js/1.29130e67.chunk.js",
+  "static/js/1.29130e67.chunk.js.map": "/cow-game/static/js/1.29130e67.chunk.js.map",
   "runtime~main.js": "/cow-game/static/js/runtime~main.39812776.js",
   "runtime~main.js.map": "/cow-game/static/js/runtime~main.39812776.js.map",
-  "static/css/main.5953c2dd.chunk.css.map": "/cow-game/static/css/main.5953c2dd.chunk.css.map",
+  "static/css/main.79fbcfd9.chunk.css.map": "/cow-game/static/css/main.79fbcfd9.chunk.css.map",
+  "static/css/1.14832127.chunk.css.map": "/cow-game/static/css/1.14832127.chunk.css.map",
   "index.html": "/cow-game/index.html",
-  "precache-manifest.0f176c8f713c36f28278730f22cd5921.js": "/cow-game/precache-manifest.0f176c8f713c36f28278730f22cd5921.js",
+  "precache-manifest.ddd25c6b397e5b91eafb4bb909a114d9.js": "/cow-game/precache-manifest.ddd25c6b397e5b91eafb4bb909a114d9.js",
   "service-worker.js": "/cow-game/service-worker.js"
 }
