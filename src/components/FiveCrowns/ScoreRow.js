@@ -12,10 +12,6 @@ export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
         setTotal(newTotal)
     }, [rounds]);
 
-    const handlePlayerNameChange = (e) => {
-        // BUG: player name is not updated in localStorage
-        setPlayerName(e.target.value);
-    }
     const handleRoundChange = (roundNumber, e) => {
         const newScore = parseInt(e.target.value);
         const updatedRounds = [...rounds];
@@ -29,6 +25,7 @@ export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
             inputs.push(
                 <td style={{width: `25px` }}>
                     <input
+                        style={{width: `3em` }}
                         type="number"
                         value={rounds[i - 1]} // Subtract 1 because the array is 0-based
                         onChange={(e) => handleRoundChange(i, e)}
@@ -42,7 +39,7 @@ export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
 
     return (
         <tr align="center">
-            <td><input type="text" value={playerName} onChange={handlePlayerNameChange}/></td>
+            <td>{playerName}</td>
             <td>{total}</td>
             {numberOfRoundInputs()}
             <td>

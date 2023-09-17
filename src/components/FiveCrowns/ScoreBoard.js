@@ -73,6 +73,12 @@ export const ScoreBoard = ({numberOfRounds}) => {
         localStorage.setItem('playersData', JSON.stringify(playersData));
     };
 
+    const handleReset = () => {
+        const confirm = window.confirm('Are you sure you want to reset?');
+        if (!confirm) return;
+        setPlayers([]);
+    }
+
     return (
         <div >
             <h3>Score Board</h3>
@@ -93,22 +99,17 @@ export const ScoreBoard = ({numberOfRounds}) => {
                             updatePlayersData={(updatedRounds) => updatePlayersData(index, updatedRounds)}
                         />
                     ))}
-                    <tr>
-                        <td align="center">
-                            <input
-                                type="text"
-                                placeholder="New Player"
-                                value={newPlayerName}
-                                onChange={(e) => setNewPlayerName(e.target.value)}
-                                />
-                        </td>
-                        <td colSpan="5">
-                            <Button onClick={handleAddPlayer}>Add Player</Button>
-                        </td>
-                    </tr>
                 </tbody>
 
             </Table>
+            <input
+                type="text"
+                placeholder="New Player"
+                value={newPlayerName}
+                onChange={(e) => setNewPlayerName(e.target.value)}
+            />
+            <Button onClick={handleAddPlayer}>Add Player</Button>
+            <Button variant="danger" onClick={handleReset}>Reset Game</Button>
         </div >
     );
 }

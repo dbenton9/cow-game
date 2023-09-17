@@ -25,7 +25,6 @@ export const FiveCrowns = () => {
         <Container>
             <h1>Five Crowns</h1>
             <div>
-                <h3>Settings</h3>
                 <div>
                     <label htmlFor="rounds">Number of Rounds</label>
                     <select onChange={(e)=>handleNumberOfRoundsChange(e)} value={numberOfRounds}>
@@ -33,6 +32,7 @@ export const FiveCrowns = () => {
                     </select>
                 </div>
             </div>
+            <br/>
             <ScoreBoard numberOfRounds={numberOfRounds}/>
         </Container>
     );
