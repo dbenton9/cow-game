@@ -73,6 +73,18 @@ export const ScoreBoard = ({numberOfRounds}) => {
         localStorage.setItem('playersData', JSON.stringify(playersData));
     };
 
+    const resetScores = () => {
+        const confirm = window.confirm('Are you sure you want to reset?');
+        if (!confirm) return;
+        setPlayers((prevPlayerStats) => {
+            const newPlayersStats = [...prevPlayerStats];
+            newPlayersStats.map((player, index) => {
+                newPlayersStats[index] = { ...newPlayersStats[index], rounds: Array.from({length: numberOfRounds}, () => 0) };
+            });
+            return newPlayersStats;
+        });
+        console.log(playersData); // changes don't show until page is refreshed...
+    }
     const handleReset = () => {
         const confirm = window.confirm('Are you sure you want to reset?');
         if (!confirm) return;
@@ -109,7 +121,8 @@ export const ScoreBoard = ({numberOfRounds}) => {
                 onChange={(e) => setNewPlayerName(e.target.value)}
             />
             <Button onClick={handleAddPlayer}>Add Player</Button>
-            <Button variant="danger" onClick={handleReset}>Reset Game</Button>
+            <Button variant="danger" onClick={resetScores}>Reset Scores</Button>
+            <Button variant="danger" onClick={handleReset}>Clear Board</Button>
         </div >
     );
 }
