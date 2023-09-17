@@ -83,7 +83,6 @@ export const ScoreBoard = ({numberOfRounds}) => {
             });
             return newPlayersStats;
         });
-        console.log(playersData); // changes don't show until page is refreshed...
     }
     const handleReset = () => {
         const confirm = window.confirm('Are you sure you want to reset?');

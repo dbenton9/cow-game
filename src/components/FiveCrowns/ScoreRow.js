@@ -1,16 +1,40 @@
 import React, {useState, useEffect} from 'react';
 
-export const ScoreRow = ({playerData, onRemove, updatePlayersData}) => {
+export const ScoreRow = ({playerData, numberOfRounds, onRemove, updatePlayersData}) => {
     const [playerName, setPlayerName] = useState(playerData.name);
     const [rounds, setRoundScore] = useState(playerData.rounds);
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
         // BUG: calculating total off of old 'rounds' when numberOfRounds is changed
-        console.log("calc rounds: " + rounds)
         const newTotal = rounds.reduce((total, round) => total + round, 0);
         setTotal(newTotal)
     }, [rounds]);
+
+    useEffect(() => {
+        setRoundScore(playerData.rounds);
+        console.log("rounds " + playerData.rounds)
+    }, [playerData]);
+
+    // Update the rounds whenever numberOfRounds changes
+    useEffect(() => {
+        setRoundScore((prevRounds) => {
+            // Logic to adjust rounds based on numberOfRounds
+            const updatedRounds = [...prevRounds];
+
+            if (updatedRounds.length < numberOfRounds) {
+                // Add additional rounds if numberOfRounds increased
+                for (let i = updatedRounds.length; i < numberOfRounds; i++) {
+                    updatedRounds.push(0);
+                }
+            } else if (updatedRounds.length > numberOfRounds) {
+                // Remove excess rounds if numberOfRounds decreased
+                updatedRounds.splice(numberOfRounds);
+            }
+
+            return updatedRounds;
+        });
+    }, [numberOfRounds]);
 
     const handleRoundChange = (roundNumber, e) => {
         const newScore = parseInt(e.target.value);
