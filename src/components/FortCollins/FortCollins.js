@@ -12,7 +12,7 @@ export const FortCollins = () => {
                 {
                     method: 'GET',
                     headers: {
-                        Authorization: 'Bearer obyKNi1jYQOMrYnR2eHP3GVSwaQhcIyc-87S-FvhaZqbbjr5NkY6JXWKxUcCO_yf2qoV1HdWnpQrHc4Ji5xOzPzk5xM5GxDckUHKT8IgUaP_iEmZogqHMwHjP4AHZXYx'
+                        Authorization: 'Bearer xxx'
                     },
                 }
             );
