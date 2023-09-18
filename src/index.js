@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './components/HomePage';
 import CowPage from './components/CowPage';
 import FiveCrowns from './components/FiveCrowns/FiveCrowns';
+import FortCollins from './components/FortCollins/FortCollins';
 import './index.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/FiveCrowns">Five Crowns</Nav.Link>
                         <Nav.Link as={Link} to="/CowPage">Cow Game</Nav.Link>
+                        <Nav.Link as={Link} to="/FortCollins">FortCollins</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -30,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<HomePage/>} />
             <Route path="/CowPage" element={<CowPage/>} />
             <Route path="/FiveCrowns" element={<FiveCrowns/>} />
+            <Route path="/FortCollins" element={<FortCollins/>} />
         </Routes>
     </Router>
 );
