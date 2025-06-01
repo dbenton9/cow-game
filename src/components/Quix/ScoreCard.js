@@ -1,27 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Collapse, Card, Table } from 'react-bootstrap';
-import './ScoreCard.css'; // We'll create this CSS file for custom styling
+import './ScoreCard.css';
 
 function ScoreCard({ player, index, onScoreChange, onRemove }) {
   const [expanded, setExpanded] = useState(false);
   
+  // Scoring scale based on number of checked boxes
+  const scoringScale = {
+    1: 1,
+    2: 3,
+    3: 6,
+    4: 10,
+    5: 15,
+    6: 21,
+    7: 28,
+    8: 36,
+    9: 45,
+    10: 55,
+    11: 66,
+    12: 78
+  };
+  
   // Initialize checkbox state if not already in player data
   if (!player.checkboxes) {
     player.checkboxes = {
-      red: Array(11).fill(false),
-      yellow: Array(11).fill(false),
-      blue: Array(11).fill(false),
-      green: Array(11).fill(false)
+      red: Array(12).fill(false),
+      yellow: Array(12).fill(false),
+      blue: Array(12).fill(false),
+      green: Array(12).fill(false)
     };
   }
   
-  const toggleDetails = () => {
-    setExpanded(!expanded);
+  // Initialize penalty checkboxes if not already in player data
+  if (!player.penalties) {
+    player.penalties = Array(4).fill(false);
+  }
+  
+  // Calculate score based on checked boxes and penalties
+  const calculateScore = (checkboxes, penalties) => {
+    let totalScore = 0;
+    
+    // Calculate score for each color
+    ['red', 'yellow', 'blue', 'green'].forEach(color => {
+      const checkedCount = checkboxes[color].filter(checked => checked).length;
+      if (checkedCount > 0) {
+        totalScore += scoringScale[checkedCount] || 0;
+      }
+    });
+    
+    // Subtract 5 points for each penalty
+    const penaltyCount = penalties.filter(penalty => penalty).length;
+    totalScore -= penaltyCount * 5;
+    
+    return totalScore;
   };
   
-  const handleScoreChange = (newScore) => {
-    onScoreChange(index, parseInt(newScore) || 0);
+  // Calculate and display scores for each color (for the score breakdown)
+  const getColorScores = () => {
+    const scores = {};
+    
+    ['red', 'yellow', 'blue', 'green'].forEach(color => {
+      const checkedCount = player.checkboxes[color].filter(checked => checked).length;
+      scores[color] = checkedCount > 0 ? scoringScale[checkedCount] : 0;
+    });
+    
+    return scores;
+  };
+  
+  const colorScores = getColorScores();
+  
+  const toggleDetails = () => {
+    setExpanded(!expanded);
   };
   
   const handleCheckboxChange = (color, colIndex) => {
@@ -30,8 +80,25 @@ function ScoreCard({ player, index, onScoreChange, onRemove }) {
       [color]: [...player.checkboxes[color]]
     };
     
+    // Toggle the checkbox state
     newCheckboxes[color][colIndex] = !newCheckboxes[color][colIndex];
-    onScoreChange(index, player.score, newCheckboxes);
+    
+    // Calculate the new score based on the updated checkboxes
+    const newScore = calculateScore(newCheckboxes, player.penalties);
+    
+    // Update player data with new checkbox state and score
+    onScoreChange(index, newScore, newCheckboxes);
+  };
+  
+  const handlePenaltyChange = (penaltyIndex) => {
+    const newPenalties = [...player.penalties];
+    newPenalties[penaltyIndex] = !newPenalties[penaltyIndex];
+    
+    // Calculate the new score with updated penalties
+    const newScore = calculateScore(player.checkboxes, newPenalties);
+    
+    // Update player data with new penalties and score
+    onScoreChange(index, newScore, null, newPenalties);
   };
   
   // Generate column headers (2-12 ascending or 12-2 descending)
@@ -40,14 +107,20 @@ function ScoreCard({ player, index, onScoreChange, onRemove }) {
       Array.from({length: 11}, (_, i) => i + 2) : 
       Array.from({length: 11}, (_, i) => 12 - i);
     
-    return numbers.map(num => (
+    const headers = numbers.map(num => (
       <th key={num} className="text-center p-1" style={{width: '30px'}}>{num}</th>
     ));
+    
+    // Add an extra empty header for the last checkbox
+    headers.push(<th key="extra" className="text-center p-1" style={{width: '30px'}}></th>);
+    
+    return headers;
   };
   
   // Generate checkboxes for a row
   const generateCheckboxes = (color, ascending) => {
-    return Array.from({length: 11}, (_, i) => {
+    // Generate the numbered checkboxes
+    const checkboxes = Array.from({length: 11}, (_, i) => {
       const colIndex = ascending ? i : 10 - i;
       return (
         <td key={i} className="text-center p-1">
@@ -61,6 +134,21 @@ function ScoreCard({ player, index, onScoreChange, onRemove }) {
         </td>
       );
     });
+    
+    // Add the extra checkbox at the end (index 11)
+    checkboxes.push(
+      <td key="extra" className="text-center p-1">
+        <input 
+          type="checkbox"
+          className="form-check-input" 
+          checked={player.checkboxes[color][11]} 
+          onChange={() => handleCheckboxChange(color, 11)}
+          style={{width: '20px', height: '20px'}}
+        />
+      </td>
+    );
+    
+    return checkboxes;
   };
   
   return (
@@ -81,7 +169,7 @@ function ScoreCard({ player, index, onScoreChange, onRemove }) {
         </td>
         <td style={{verticalAlign: 'middle', fontSize: '1.1rem'}}>{player.name}</td>
         <td style={{verticalAlign: 'middle', fontSize: '1.1rem'}}>{player.score}</td>
-        <td style={{textAlign: 'left', verticalAlign: 'middle'}}>
+        <td style={{textAlign: 'center', verticalAlign: 'middle'}}>
           <Button 
             variant="danger" 
             onClick={() => onRemove(index)}
@@ -104,16 +192,39 @@ function ScoreCard({ player, index, onScoreChange, onRemove }) {
           <Collapse in={expanded}>
             <div>
               <Card body className="border-0 p-3">
-                {/* Score Input */}
-                <div className="d-flex align-items-center justify-content-center mb-3">
-                  <label className="me-3 fs-5">Update Score:</label>
-                  <input 
-                    type="number" 
-                    value={player.score} 
-                    onChange={(e) => handleScoreChange(e.target.value)}
-                    style={{width: '120px', fontSize: '1.2rem', padding: '8px'}}
-                    className="form-control"
-                  />
+                {/* Score Breakdown */}
+                <div className="d-flex justify-content-around mb-3 p-2 border rounded">
+                  <div className="text-center">
+                    <div style={{color: '#cc0000', fontWeight: 'bold'}}>Red</div>
+                    <div>{colorScores.red}</div>
+                  </div>
+                  <div className="text-center">
+                    <div style={{color: '#cccc00', fontWeight: 'bold'}}>Yellow</div>
+                    <div>{colorScores.yellow}</div>
+                  </div>
+                  <div className="text-center">
+                    <div style={{color: '#0000cc', fontWeight: 'bold'}}>Blue</div>
+                    <div>{colorScores.blue}</div>
+                  </div>
+                  <div className="text-center">
+                    <div style={{color: '#00cc00', fontWeight: 'bold'}}>Green</div>
+                    <div>{colorScores.green}</div>
+                  </div>
+                  <div className="text-center">
+                    <div style={{color: '#cc0000', fontWeight: 'bold'}}>Penalties</div>
+                    <div className="d-flex gap-1">
+                      {player.penalties.map((checked, i) => (
+                        <input
+                          key={i}
+                          type="checkbox"
+                          className="form-check-input"
+                          checked={checked}
+                          onChange={() => handlePenaltyChange(i)}
+                          style={{width: '18px', height: '18px'}}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Color Rows with Checkboxes */}

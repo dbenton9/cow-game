@@ -16,18 +16,19 @@ function ScoreBoard() {
     localStorage.setItem('quixPlayers', JSON.stringify(players));
   }, [players]);
   
-  // Add a new player
+  // Add a new player with empty checkboxes
   const handleAddPlayer = () => {
     if (newPlayerName.trim() !== '') {
       setPlayers([...players, {
         name: newPlayerName,
         score: 0,
         checkboxes: {
-          red: Array(11).fill(false),
-          yellow: Array(11).fill(false),
-          blue: Array(11).fill(false),
-          green: Array(11).fill(false)
-        }
+          red: Array(12).fill(false),
+          yellow: Array(12).fill(false),
+          blue: Array(12).fill(false),
+          green: Array(12).fill(false)
+        },
+        penalties: Array(4).fill(false)
       }]);
       setNewPlayerName('');
     }
@@ -44,17 +45,25 @@ function ScoreBoard() {
     setPlayers(updatedPlayers);
   };
   
-  // Update player score or checkboxes
-  const updateScore = (index, newScore, newCheckboxes = null) => {
+  // Update player score, checkboxes, and penalties
+  const updateScore = (index, newScore, newCheckboxes = null, newPenalties = null) => {
     setPlayers(prevPlayers => {
       const updatedPlayers = [...prevPlayers];
+      
+      // Update score
       updatedPlayers[index] = {
         ...updatedPlayers[index],
         score: newScore
       };
       
+      // Update checkboxes if provided
       if (newCheckboxes) {
         updatedPlayers[index].checkboxes = newCheckboxes;
+      }
+      
+      // Update penalties if provided
+      if (newPenalties) {
+        updatedPlayers[index].penalties = newPenalties;
       }
       
       return updatedPlayers;
@@ -71,11 +80,12 @@ function ScoreBoard() {
         ...player,
         score: 0,
         checkboxes: {
-          red: Array(11).fill(false),
-          yellow: Array(11).fill(false),
-          blue: Array(11).fill(false),
-          green: Array(11).fill(false)
-        }
+          red: Array(12).fill(false),
+          yellow: Array(12).fill(false),
+          blue: Array(12).fill(false),
+          green: Array(12).fill(false)
+        },
+        penalties: Array(4).fill(false)
       }))
     );
   };
