@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cow-game/static/css/main.892518fd.css",
-    "main.js": "/cow-game/static/js/main.26c13601.js",
+    "main.js": "/cow-game/static/js/main.b94e520f.js",
     "static/media/bootstrap-icons.woff?": "/cow-game/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/cow-game/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/cow-game/index.html",
     "main.892518fd.css.map": "/cow-game/static/css/main.892518fd.css.map",
-    "main.26c13601.js.map": "/cow-game/static/js/main.26c13601.js.map"
+    "main.b94e520f.js.map": "/cow-game/static/js/main.b94e520f.js.map"
   },
   "entrypoints": [
     "static/css/main.892518fd.css",
-    "static/js/main.26c13601.js"
+    "static/js/main.b94e520f.js"
   ]
 }
