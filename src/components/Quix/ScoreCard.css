@@ -1,0 +1,47 @@
+/* Row colors */
+.quix-table .row-red,
+.quix-table .row-red td {
+  background-color: #ff9999 !important;
+}
+
+.quix-table .row-yellow,
+.quix-table .row-yellow td {
+  background-color: #ffff99 !important;
+}
+
+.quix-table .row-blue,
+.quix-table .row-blue td {
+  background-color: #9999ff !important;
+}
+
+.quix-table .row-green,
+.quix-table .row-green td {
+  background-color: #99ff99 !important;
+}
+
+/* Make checkboxes larger and more visible */
+.quix-table input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+/* More padding for rows to show colors better */
+.quix-table tr {
+  height: 40px;
+}
+
+/* Override any Bootstrap striping */
+.quix-table tbody tr:nth-of-type(odd) {
+  background-color: inherit;
+}
+
+/* Make sure the hover state doesn't hide our colors */
+.quix-table tbody tr:hover {
+  background-color: inherit;
+}
+
+/* Add borders to cells */
+.quix-table td {
+  border: 1px solid #dee2e6;
+}
